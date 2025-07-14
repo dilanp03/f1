@@ -8,12 +8,14 @@ from sklearn.preprocessing import MinMaxScaler
 import warnings
 import numpy as np
 import scipy.special
+import os
 
 warnings.filterwarnings('ignore')
+os.makedirs('cache_dir', exist_ok=True)
 ff1.Cache.enable_cache('cache_dir')
 
 completed_rounds = [
-    'Australia', 'China', 'Japan', 'Bahrain', 'Saudi Arabia', 'Miami', 'Emilia-Romagna', 'Monaco', 'Spain', 'Canada', 'Austria'
+    'Australia', 'China', 'Japan', 'Bahrain', 'Saudi Arabia', 'Miami', 'Emilia-Romagna', 'Monaco', 'Spain', 'Canada', 'Austria', 'Great Britain'
 ]
 
 races_2025 = []
@@ -78,10 +80,10 @@ top_10_output = (
 top_10_output['predicted_pos'] = top_10_output.index + 1
 top_10_output = top_10_output.head(10)
 
-print('\n Predicted winner probabilities for British GP: \n')
+print('\n Predicted winner probabilities for Belgium GP: \n')
 print(win_output.to_string(index=False, float_format='%.3f'))
 
-print('\n Predicted top 10 for the British GP: \n')
+print('\n Predicted top 10 for the Belgium GP: \n')
 print(top_10_output.to_string(index=False, float_format='%.2f'))
 
 #import matplotlib.pyplot as plt
