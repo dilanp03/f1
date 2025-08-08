@@ -15,7 +15,7 @@ os.makedirs('cache_dir', exist_ok=True)
 ff1.Cache.enable_cache('cache_dir')
 
 completed_rounds = [
-    'Australia', 'China', 'Japan', 'Bahrain', 'Saudi Arabia', 'Miami', 'Emilia-Romagna', 'Monaco', 'Spain', 'Canada', 'Austria', 'Great Britain'
+    'Australia', 'China', 'Japan', 'Bahrain', 'Saudi Arabia', 'Miami', 'Emilia-Romagna', 'Monaco', 'Spain', 'Canada', 'Austria', 'Great Britain', 'Belgium', 'Hungary'
 ]
 
 races_2025 = []
@@ -80,18 +80,30 @@ top_10_output = (
 top_10_output['predicted_pos'] = top_10_output.index + 1
 top_10_output = top_10_output.head(10)
 
-print('\n Predicted winner probabilities for Belgium GP: \n')
+print('\nPredicted winner probabilities for Dutch GP: \n')
 print(win_output.to_string(index=False, float_format='%.3f'))
 
-print('\n Predicted top 10 for the Belgium GP: \n')
+print('\nPredicted top 10 for the Dutch GP: \n')
 print(top_10_output.to_string(index=False, float_format='%.2f'))
 
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
+
+# Plot the top 10 predicted positions
+plt.figure(figsize=(10, 6))
+plt.barh(top_10_output['Abbreviation'], top_10_output['predicted_pos'], color='skyblue')
+plt.xlabel('Predicted Finishing Position')
+plt.title('Top 10 Driver Predictions – Dutch GP')
+plt.gca().invert_yaxis()  # So 1st place appears at the top
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.tight_layout()
+plt.show()
+
+# import matplotlib.pyplot as plt
 
 # top_probs = driver_stats.sort_values(by='scaled_win_prob', ascending=False).head(10)
 # plt.figure(figsize=(10, 5))
 # plt.bar(top_probs['Abbreviation'], top_probs['scaled_win_prob'], color='royalblue')
-# plt.title('Top 10 Win Probabilities - Canadian GP')
+# plt.title('Top 10 Win Probabilities - Dutch GP')
 # plt.xlabel('Driver')
 # plt.ylabel('Win Probability')
 # plt.ylim(0, 1.1)
@@ -99,9 +111,9 @@ print(top_10_output.to_string(index=False, float_format='%.2f'))
 # plt.show()
 
 
-#X_predict = driver_stats[[
+# X_predict = driver_stats[[
 #    'avg_pos', 'best_pos', 'worst_pos', 'total_points', 'wins', 'avg_grid'
-#]]
+# ]]
 
 # output = driver_stats[['Abbreviation', 'win_prob']]
 # output = output.sort_values(by='win_prob', ascending=True)
